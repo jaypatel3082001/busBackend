@@ -37,7 +37,8 @@ const port = process.env.PORT || 3001;
 //   });
 mongoose
   .connect(
-    "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusSoftware?retryWrites=true&w=majority",
+    "mongodb+srv://vinaysakariya5042:Vap8S8e4EVaYqKD4@cluster0.qbsa7dg.mongodb.net/BusSoftware?retryWrites=true&w=majority"
+    // "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusSoftware?retryWrites=true&w=majority",
 
   )
   .then(() => console.log("MongoDB connected"))
