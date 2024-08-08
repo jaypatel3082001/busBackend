@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const env = require("dotenv");
 const seats = require("./routes/seatRoute");
+const busInfo = require("./routes/BusInfoRoute");
 // const question = require("./routes/questionRoute");
 // const quize = require("./routes/quizRoute");
 // const section = require("./routes/sectionRoute");
@@ -64,6 +65,7 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 app.use("/seats", seats);
+app.use("/bus", busInfo);
 // app.use("/questions", question);
 // app.use("/section", quize);
 // app.use("/quiz", section);

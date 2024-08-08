@@ -1,45 +1,29 @@
 const SeatModel = require("../models/bookedseat");
+const { translate } = require("@vitalets/google-translate-api");
 
-// async function allocateSeats(req,res){
-//     try{
-//         const {seats,busNumber,source,destination}=req.body
-//         for(let i=0;i<seats;i++){
-//             await SeatModel.create({
-//                 busNumber:busNumber,
-//                 source:source,
-//                 destination:destination,
-//                 seatNumber:i,
-
-//             })
-//         }
-//         res.status(201).json("bus seats are available")
-
-//     }catch(error){
-//         res.status(500).json(`error while allocating seat ${error}`)
-//     }
-// }
 async function allocateSeats(req, res) {
   try {
     const { seatNumber, name, vilage, mobile, date } = req.body;
-    // for(let i=0;i<seats;i++){
-    //     await SeatModel.create({
-    //         busNumber:busNumber,
-    //         source:source,
-    //         destination:destination,
-    //         seatNumber:i,
+    // console.log("translate",translate)
 
-    //     })
-    // }
+    // Translate the name to Gujarati
+    const translationResponse1 = await translate(name, { to: "gu" });
+    const gujaratiName1 = translationResponse1.text;
+    const translationResponse2 = await translate(vilage, { to: "gu" });
+    const gujaratiName2 = translationResponse2.text;
+
+    // Create a seat with translated name
     const currentSeat = await SeatModel.create({
-      name,
-      vilage,
-      mobile,
-      date,
-      seatNumber,
+      name: gujaratiName1,
+      vilage: gujaratiName2,
+      mobile: mobile,
+      date: date,
+      seatNumber: seatNumber,
     });
+
     res.status(201).json({ data: currentSeat });
   } catch (error) {
-    res.status(500).json(`error while allocating seat ${error}`);
+    res.status(500).json(`Error while allocating seat: ${error}`);
   }
 }
 async function allseats(req, res) {
