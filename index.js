@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const env = require("dotenv");
 const seats = require("./routes/seatRoute");
 const busInfo = require("./routes/BusInfoRoute");
+const routeInfo = require("./routes/Routeinfo");
 // const question = require("./routes/questionRoute");
 // const quize = require("./routes/quizRoute");
 // const section = require("./routes/sectionRoute");
@@ -38,9 +39,8 @@ const port = process.env.PORT || 3001;
 //   });
 mongoose
   .connect(
-    "mongodb+srv://vinaysakariya5042:Vap8S8e4EVaYqKD4@cluster0.qbsa7dg.mongodb.net/BusSoftware?retryWrites=true&w=majority"
+    "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusBackend?retryWrites=true&w=majority"
     // "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusSoftware?retryWrites=true&w=majority",
-
   )
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
@@ -66,6 +66,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/seats", seats);
 app.use("/bus", busInfo);
+app.use("/route", routeInfo);
 // app.use("/questions", question);
 // app.use("/section", quize);
 // app.use("/quiz", section);

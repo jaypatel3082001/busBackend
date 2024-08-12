@@ -1,9 +1,14 @@
 const SeatModel = require("../models/bookedseat");
+const routeInfo = require("../models/routeinfo");
 const { translate } = require("@vitalets/google-translate-api");
 
 async function allocateSeats(req, res) {
   try {
     const { seatNumber, name, vilage, mobile, date } = req.body;
+    const exsitRoute=await routeInfo.findById(req.params.id)
+    if(!exsitRoute){
+      res.status(404).json(`Route not found`);
+    }
     // console.log("translate",translate)
 
     // Translate the name to Gujarati
@@ -19,6 +24,7 @@ async function allocateSeats(req, res) {
       mobile: mobile,
       date: date,
       seatNumber: seatNumber,
+      route:exsitRoute._id
     });
 
     res.status(201).json({ data: currentSeat });

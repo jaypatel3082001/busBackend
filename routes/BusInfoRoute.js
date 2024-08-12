@@ -10,7 +10,7 @@ const { getsearchBus } = require("../controller/searchController");
 const router = express.Router();
 
 router.post("/create", busDetails);
-router.post("/update/:id", busDetailsupdate);
+router.put("/update/:id", busDetailsupdate);
 router.get("/search", getsearchBus);
 
 module.exports = router;

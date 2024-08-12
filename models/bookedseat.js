@@ -5,6 +5,7 @@ const bookedseatSchema=new mongoose.Schema({
     vilage:{type:String},
     mobile:{type:Number},
     seatNumber:{type:String},
+    route: {type: mongoose.Schema.Types.ObjectId, ref: "Routeinfo" },
     date:{type:Date,default:Date.now()}
     // seatId:{type:mongoose.Schema.Types.ObjectId, ref: "SeatSchema"}
 },

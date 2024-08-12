@@ -6,7 +6,7 @@ const { getsearchAll } = require('../controller/searchController');
 
 const router = express.Router();
 
-router.post('/create', allocateSeats);
+router.post('/create/:id', allocateSeats);
 router.get('/read', allseats);
 router.put('/update/:id', updateseat);
 router.delete('/delete/:id', deleteseat);
