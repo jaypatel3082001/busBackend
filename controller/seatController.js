@@ -40,6 +40,59 @@ async function allseats(req, res) {
     res.status(500).json(`error while allocating seat ${error}`);
   }
 }
+async function allseatsbyname(req, res) {
+  try {
+    const currentSeat = await SeatModel.aggregate(
+      [
+        {
+          $group:{
+          "_id": {
+          "name": "$name",
+          "village": "$vilage"
+        },
+        "seatNumbers": {
+          "$push": "$seatNumber"
+        },
+            "date":{
+  $first:"$date"},
+            "village":{
+              $first:"$vilage"
+            },
+            "name":{
+              $first:"$name"
+            },
+            "mobile":{
+              $first:"$mobile"
+            },
+            
+            
+           
+            
+          }
+         
+  
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "name": "$_id.name",
+        "village": 1,
+        "seatNumbers": 1,
+        "mobile": 1,
+        "date": 1
+      }
+    }
+      
+    
+     
+    ]
+  
+  );
+    res.status(201).json({ data: currentSeat });
+  } catch (error) {
+    res.status(500).json(`error while allocating seat ${error}`);
+  }
+}
 async function deleteseat(req, res) {
   try {
     const currentSeat = await SeatModel.findByIdAndDelete(req.params.id);
@@ -62,4 +115,4 @@ async function updateseat(req, res) {
     res.status(500).json(`error while allocating seat ${error}`);
   }
 }
-module.exports = { allocateSeats, allseats, updateseat, deleteseat };
+module.exports = { allocateSeats, allseats, updateseat, deleteseat,allseatsbyname };

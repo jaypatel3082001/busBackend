@@ -39,7 +39,8 @@ const port = process.env.PORT || 3001;
 //   });
 mongoose
   .connect(
-    "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusBackend?retryWrites=true&w=majority"
+    // "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusBackend?retryWrites=true&w=majority"
+    "mongodb+srv://shaktidhamtravels9:ib8B10PXVXj9mgi1@cluster0.3u4unff.mongodb.net/BusBackend"
     // "mongodb+srv://jayp_3008:jay123@cluster0.xycjrla.mongodb.net/BusSoftware?retryWrites=true&w=majority",
   )
   .then(() => console.log("MongoDB connected"))
