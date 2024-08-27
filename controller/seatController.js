@@ -64,13 +64,13 @@ async function allseatsbyname(req, res) {
             "mobile":{
               $first:"$mobile"
             },
-            
-            
-           
-            
+
+
+
+
           }
-         
-  
+
+
     },
     {
       "$project": {
@@ -82,11 +82,11 @@ async function allseatsbyname(req, res) {
         "date": 1
       }
     }
-      
-    
-     
+
+
+
     ]
-  
+
   );
     res.status(201).json({ data: currentSeat });
   } catch (error) {
@@ -115,4 +115,7 @@ async function updateseat(req, res) {
     res.status(500).json(`error while allocating seat ${error}`);
   }
 }
+
+
+
 module.exports = { allocateSeats, allseats, updateseat, deleteseat,allseatsbyname };
